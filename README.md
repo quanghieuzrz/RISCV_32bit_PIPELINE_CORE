@@ -39,6 +39,7 @@ A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor co
 RISCV_PIPELINE_CORE/
 │
 ├── docs/
+│   └── pipeline_top.png
 ├── src/
 │   ├── Alu_Decoder.v
 │   ├── ALU.v
