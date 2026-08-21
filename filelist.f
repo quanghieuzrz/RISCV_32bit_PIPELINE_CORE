@@ -11,23 +11,29 @@ src/Instruction_Memory.v
 src/IF_ID_Register.v
 src/ALU.v
 src/Main_Decoder.v
-src/ALU_Decoder.v
+src/Alu_Decoder.v
 src/Register_File.v
 src/Sign_Extend.v
 src/ID_EX_Register.v
-src/data_memory.v
+src/Data_Memory.v
 src/Hazard_Unit.v
 
 # ---- Mid-level modules (instantiate the leaf modules above) ----
-src/Control_Unit_Top.v
+src/Control_Unit_top.v
 src/Fetch_Cycle.v
 src/Decode_Cycle.v
 src/Execute_Cycle.v
-src/memory_cycle.v
-src/write_back.v
+src/Memory_Cycle.v
+src/Write_Back.v
 
 # ---- Top-level ----
-src/Pipeline_Top.v
+src/Pipeline_top.v
 
-# ---- Testbench (only add this line when running simulation) ----
-# src/Pipeline_Top_tb.v
+# ---- Testbench (Uncomment the active testbench for simulation) ----
+# sim/pipeline_tb.v
+# sim/Fetch_Cycle_tb.v
+# sim/Decode_Cycle_tb.v
+# sim/Execute_Cycle_tb.v
+# sim/Memory_Cycle_tb.v
+# sim/Write_Back_tb.v
+# sim/Hazard_Unit_tb.v
