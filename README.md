@@ -121,12 +121,6 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ---
 
-## Getting Started & Simulation
-
-### Prerequisites
-- HDL Simulator supporting Verilog/SystemVerilog (e.g., Vivado, QuestaSim, ModelSim, or Verilator).
-- RISC-V GNU Toolchain (optional, for compiling custom assembly/C test vectors).
-
 ## Simulation & Verification Setup
 
 ### Prerequisites
