@@ -100,7 +100,7 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ---
 
-## Hazard Detection & Forwarding (NVIDIA-grade Design Highlights)
+## Hazard Detection & Forwarding Mechanism
 
 ### Data Hazard Resolution (Forwarding & Stalling)
 * **ALU Forwarding:** The `Hazard_Unit` compares source registers (`RS1E`, `RS2E`) with previous destination registers (`RDM`, `RDW`). If a match occurs, `ForwardAE`/`ForwardBE` switches to `2'b10` (EX/MEM forwarding) or `2'b01` (MEM/WB forwarding).
