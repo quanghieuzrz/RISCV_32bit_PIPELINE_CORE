@@ -1,4 +1,4 @@
-  # RISC-V 32-bit Pipelined Core (RV32I)
+  RISC-V 32-bit Pipelined Core (RV32I)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Language](https://img.shields.io/badge/Language-Verilog_2001-blue.svg)]()
   [![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange.svg)]()
