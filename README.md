@@ -149,7 +149,7 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git](https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git)
+git clone https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git
 cd RISCV_Pipeline_Core
 
 # Compile RTL and Testbench using filelist
@@ -160,13 +160,7 @@ vvp sim_out.vvp
 
 # Open Waveform via GTKWave
 gtkwave waveform.vcd
-
-### Running Simulation
-1. Clone the repository:
-   `git clone https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git`
-2. Compile source files using the compilation script/file list:
-   `filelist.f`
-3. Run the top-level testbench (`pipeline_tb.v`) in your simulation tool.
+```
 
 ---
 
@@ -188,6 +182,7 @@ This project is an educational and synthesizable core focused on core pipeline f
 - [ ] Integrate Harvard L1 Caches (I-Cache & D-Cache).
 - [ ] Add AXI4-Lite Memory-Mapped Bus interface for SoC integration.
 - [ ] Synthesize design on Xilinx Artix-7 FPGA and report PPA metrics (Power, Performance, Area).
+
 ---
 
 ## Author
