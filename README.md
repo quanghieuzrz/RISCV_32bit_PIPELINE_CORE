@@ -1,11 +1,12 @@
-  RISC-V 32-bit Pipelined Core (RV32I)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![Language](https://img.shields.io/badge/Language-Verilog_2001-blue.svg)]()
-  [![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange.svg)]()
-  [![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-green.svg)]()
-  [![Status](https://img.shields.io/badge/Status-Synthesizable-brightgreen.svg)]()
+# RISC-V 32-bit Pipelined Core (RV32I)
 
-  A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the RV32I base integer instruction set. Built with modular Verilog HDL adhering to Harvard architecture with decoupled instruction and data memories.
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Language](https://img.shields.io/badge/Language-Verilog%202001-blue)
+![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange)
+![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-brightgreen)
+![Status](https://img.shields.io/badge/Status-Synthesizable-success)
+
+A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the RV32I base integer instruction set. Built with modular Verilog HDL adhering to Harvard architecture with decoupled instruction and data memories.
   
   ---
 
