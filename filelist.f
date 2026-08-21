@@ -30,10 +30,10 @@ src/Write_Back.v
 src/Pipeline_top.v
 
 # ---- Testbench (Uncomment the active testbench for simulation) ----
-# sim/pipeline_tb.v
-# sim/Fetch_Cycle_tb.v
-# sim/Decode_Cycle_tb.v
-# sim/Execute_Cycle_tb.v
-# sim/Memory_Cycle_tb.v
-# sim/Write_Back_tb.v
-# sim/Hazard_Unit_tb.v
+# tb/pipeline_tb.v
+# tb/Fetch_Cycle_tb.v
+# tb/Decode_Cycle_tb.v
+# tb/Execute_Cycle_tb.v
+# tb/Memory_Cycle_tb.v
+# tb/Write_Back_tb.v
+# tb/Hazard_Unit_tb.v
