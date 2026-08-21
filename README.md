@@ -1,10 +1,33 @@
   # RISC-V 32-bit Pipelined Core (RV32I)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![Language: Verilog](https://img.shields.io/badge/Language-Verilog-blue.svg)]()
-  [![Architecture: 5-Stage Pipeline](https://img.shields.io/badge/Architecture-5_Stage_Pipeline-success.svg)]()
+  [![Language](https://img.shields.io/badge/Language-Verilog_2001-blue.svg)]()
+  [![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange.svg)]()
+  [![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-green.svg)]()
+  [![Status](https://img.shields.io/badge/Status-Synthesizable-brightgreen.svg)]()
 
-A 5-stage pipelined RISC-V processor core implemented in Verilog.
+  A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the RV32I base integer instruction set. Built with modular Verilog HDL adhering to Harvard architecture with decoupled instruction and data memories.
+  
+  ---
 
+## Key Features
+
+* **ISA Standard:** Full execution support for RV32I Base Integer Instruction Set architecture.
+* **Pipeline Microarchitecture:** Classic 5-stage pipeline (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`).
+* **Advanced Hazard Handling:**
+  * **Data Forwarding Unit:** Dynamic forwarding (`EX->EX`, `MEM->EX`) to resolve Read-After-Write (RAW) hazards with zero latency penalty.
+  * **Load-Use Stall Unit:** Automatic single-cycle bubble insertion for unresolved load dependencies.
+  * **Control Hazard Resolution:** Flush mechanism on branch/jump control instruction redirects.
+* **Harvard Architecture:** Decoupled Instruction Memory and Data Memory interfaces to eliminate structural hazards.
+* **Design Methodology:** Fully synchronous, synthesizable RTL without vendor-specific primitives.
+
+---
+
+## Target Architecture & Synthesis
+
+* **Target Devices:** FPGA (Xilinx Artix-7 / Intel Cyclone IV) or ASIC front-end flow.
+* **Design Style:** Fully synchronous, highly modular Verilog HDL code base.
+
+---
 ## System Overview
 This repository contains a high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the **RV32I** base integer instruction set. The architecture adheres to the Harvard architecture with separate instruction and data memories to eliminate structural hazards during the fetch and memory access stages.
 
@@ -112,9 +135,31 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 - HDL Simulator supporting Verilog/SystemVerilog (e.g., Vivado, QuestaSim, ModelSim, or Verilator).
 - RISC-V GNU Toolchain (optional, for compiling custom assembly/C test vectors).
 
-## Verification & Test Results
-- **Unit Testing:** Individual pipeline stages (Fetch, Decode, Execute, Memory, Writeback) are thoroughly verified via dedicated testbenches (`*_tb.v`).
-- **Integration Testing:** Full-system pipeline verification is performed using `pipeline_tb.v` with test vectors validating data forwarding, load-use hazard stalls, and branch control flushes.
+## Verification & Simulation Setup
+
+### Prerequisites
+* **HDL Simulator:** ModelSim / QuestaSim / Xilinx Vivado / Verilator / Icarus Verilog
+* **Toolchain (Optional):** RISC-V GNU Toolchain (for compiling C/Assembly binaries to hex)
+
+### Verification Methodology
+* **Unit Testing:** Individual pipeline stages (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`) are verified via dedicated testbenches (`*_tb.v`).
+* **Integration Testing:** Full-system pipeline verification is performed using `pipeline_tb.v` with test vectors validating data forwarding, load-use hazard stalls, and branch control flushes.
+
+### Running Simulation (CLI Flow via Icarus Verilog)
+
+```bash
+# Clone the repository
+git clone [https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git](https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git)
+cd RISCV_Pipeline_Core
+
+# Compile RTL and Testbench using filelist
+iverilog -g2012 -f filelist.f -o sim_out.vvp
+
+# Run simulation
+vvp sim_out.vvp
+
+# Open Waveform via GTKWave
+gtkwave waveform.vcd
 
 ### Running Simulation
 1. Clone the repository:
@@ -125,5 +170,29 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ---
 
-- 💼 LinkedIn: [quanghieuzrz](https://www.linkedin.com/in/quanghieuzrz/)
-- ✉️ Email: hieubuiquang2006@gmail.com
+## Current Limitations
+
+This project is an educational and synthesizable core focused on core pipeline fundamentals:
+
+* **Supported Set:** Currently implements a functional subset of RV32I base instructions.
+* **Exceptions/Interrupts:** No trap handling, CSR registers, or exception logic integrated yet.
+* **Memory System:** Uses flat memory arrays without L1 Instruction/Data Cache integration.
+* **Branch Prediction:** Uses basic branch flush mechanism without dynamic branch predictors.
+
+---
+
+## Future Enhancements
+
+- [ ] Complete full RV32I instruction extensions (`LUI`, `AUIPC`, `SLTI`, `SRA`, etc.).
+- [ ] Implement Dynamic Branch Target Buffer (BTB) & Branch Predictor.
+- [ ] Integrate Harvard L1 Caches (I-Cache & D-Cache).
+- [ ] Add AXI4-Lite Memory-Mapped Bus interface for SoC integration.
+- [ ] Synthesize design on Xilinx Artix-7 FPGA and report PPA metrics (Power, Performance, Area).
+---
+
+## Author
+
+**Hieu Bui**
+* 💼 **LinkedIn:** [quanghieuzrz](https://www.linkedin.com/in/quanghieuzrz/)
+* ✉️ **Email:** hieubuiquang2006@gmail.com
+* 📞 **Phone:** (+84) 868677412
