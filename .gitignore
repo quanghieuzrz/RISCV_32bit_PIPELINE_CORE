@@ -1,0 +1,8 @@
+# Simulation & compilation build artifacts
+*.vvp
+*.vcd
+*.gtkw
+a.out
+
+# IDE configuration files
+.vscode/
