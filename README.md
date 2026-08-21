@@ -31,7 +31,7 @@ A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor co
 ---
 
 ## Architecture Diagram
-![Architecture Diagram](pipeline_top.png)
+![Architecture Diagram](docs/pipeline_top.png)
 
 ## Project Structure
 
