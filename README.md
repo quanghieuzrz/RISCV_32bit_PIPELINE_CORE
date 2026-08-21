@@ -127,15 +127,17 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 - HDL Simulator supporting Verilog/SystemVerilog (e.g., Vivado, QuestaSim, ModelSim, or Verilator).
 - RISC-V GNU Toolchain (optional, for compiling custom assembly/C test vectors).
 
-## Verification & Simulation Setup
+## Simulation & Verification Setup
 
 ### Prerequisites
-* **HDL Simulator:** ModelSim / QuestaSim / Xilinx Vivado / Verilator / Icarus Verilog
-* **Toolchain (Optional):** RISC-V GNU Toolchain (for compiling C/Assembly binaries to hex)
+* **HDL Simulator:** Icarus Verilog / ModelSim / QuestaSim / Xilinx Vivado / Verilator
+* **Toolchain (Optional):** RISC-V GNU Toolchain (for compiling C/Assembly test vectors)
 
 ### Verification Methodology
 * **Unit Testing:** Individual pipeline stages (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`) are verified via dedicated testbenches (`*_tb.v`).
 * **Integration Testing:** Full-system pipeline verification is performed using `pipeline_tb.v` with test vectors validating data forwarding, load-use hazard stalls, and branch control flushes.
+
+---
 
 ### Running Simulation (CLI Flow via Icarus Verilog)
 
