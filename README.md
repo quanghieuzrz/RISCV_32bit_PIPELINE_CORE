@@ -1,7 +1,7 @@
 # RISC-V 32-bit Pipelined Core (RV32I)
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Language](https://img.shields.io/badge/Language-Verilog%202001-blue)
+[![Language](https://img.shields.io/badge/Language-Verilog-blue.svg)]()
 ![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange)
 ![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Synthesizable-success)
