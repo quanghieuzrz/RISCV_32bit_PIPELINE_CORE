@@ -1,23 +1,22 @@
-# RISC-V 32-bit Pipelined Core (RV32I)
+  # RISC-V 32-bit Pipelined Core (RV32I)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Language](https://img.shields.io/badge/Language-Verilog_2001-blue.svg)]()
+  [![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange.svg)]()
+  [![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-green.svg)]()
+  [![Status](https://img.shields.io/badge/Status-Synthesizable-brightgreen.svg)]()
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Language](https://img.shields.io/badge/Language-Verilog_2001-blue.svg)]()
-[![Architecture](https://img.shields.io/badge/Architecture-RV32I-orange.svg)]()
-[![Pipeline](https://img.shields.io/badge/Pipeline-5--Stage-green.svg)]()
-[![Status](https://img.shields.io/badge/Status-Synthesizable-brightgreen.svg)]()
-
-A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the RV32I base integer instruction set. Built with modular Verilog HDL adhering to Harvard architecture with decoupled instruction and data memories.
-
----
+  A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor core** implementing the RV32I base integer instruction set. Built with modular Verilog HDL adhering to Harvard architecture with decoupled instruction and data memories.
+  
+  ---
 
 ## Key Features
 
 * **ISA Standard:** Full execution support for RV32I Base Integer Instruction Set architecture.
 * **Pipeline Microarchitecture:** Classic 5-stage pipeline (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`).
 * **Advanced Hazard Handling:**
-  * **Data Forwarding Unit:** Dynamic forwarding (`EX->EX`, `MEM->EX`) to resolve Read-After-Write (RAW) hazards with zero latency penalty.
-  * **Load-Use Stall Unit:** Automatic single-cycle bubble insertion for unresolved load dependencies.
-  * **Control Hazard Resolution:** Flush mechanism on branch/jump control instruction redirects.
+  * **Data Forwarding Unit:** Dynamic forwarding (`EX->EX`, `MEM->EX`) to resolve Read-After-Write (RAW) hazards with zero latency penalty.
+  * **Load-Use Stall Unit:** Automatic single-cycle bubble insertion for unresolved load dependencies.
+  * **Control Hazard Resolution:** Flush mechanism on branch/jump control instruction redirects.
 * **Harvard Architecture:** Decoupled Instruction Memory and Data Memory interfaces to eliminate structural hazards.
 * **Design Methodology:** Fully synchronous, synthesizable RTL without vendor-specific primitives.
 
@@ -31,10 +30,7 @@ A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor co
 ---
 
 ## Architecture Diagram
-
-![Architecture Diagram](./docs/architecture_diagram.png)
-
----
+![Architecture Diagram](pipeline_top.png)
 
 ## Project Structure
 
@@ -42,46 +38,38 @@ A high-performance, synthesizable **5-stage pipelined RISC-V 32-bit processor co
 RISCV_PIPELINE_CORE/
 │
 ├── docs/
-│   ├── architecture_diagram.png
-│   └── architecture_spec.md
-│
 ├── src/
-│   ├── Alu_Decoder.v
-│   ├── ALU.v
-│   ├── Control_Unit_top.v
-│   ├── Data_Memory.v
-│   ├── Decode_Cycle.v
-│   ├── Execute_Cycle.v
-│   ├── Fetch_Cycle.v
-│   ├── Hazard_Unit.v
-│   ├── ID_EX_Register.v
-│   ├── IF_ID_Register.v
-│   ├── Instruction_Memory.v
-│   ├── Main_Decoder.v
-│   ├── Memory_Cycle.v
-│   ├── Mux_Fetch.v
-│   ├── PC.v
-│   ├── PC_Adder.v
-│   ├── Pipeline_top.v
-│   ├── Register_File.v
-│   ├── Sign_Extend.v
-│   └── Write_Back.v
-│
-├── sim/
-│   ├── pipeline_tb.v
-│   ├── Fetch_Cycle_tb.v
-│   ├── Decode_Cycle_tb.v
-│   ├── Execute_Cycle_tb.v
-│   ├── Memory_Cycle_tb.v
-│   ├── Write_Back_tb.v
-│   └── Hazard_Unit_tb.v
+│   ├── Alu_Decoder.v
+│   ├── ALU.v
+│   ├── Control_Unit_top.v
+│   ├── Data_Memory.v
+│   ├── Decode_Cycle.v
+│   ├── Decode_Cycle_tb.v
+│   ├── Execute_Cycle.v
+│   ├── Execute_Cycle_tb.v
+│   ├── Fetch_Cycle.v
+│   ├── Fetch_Cycle_tb.v
+│   ├── Hazard_Unit.v
+│   ├── ID_EX_Register.v
+│   ├── IF_ID_Register.v
+│   ├── Instruction_Memory.v
+│   ├── Main_Decoder.v
+│   ├── Memory_Cycle.v
+│   ├── Memory_Cycle_tb.v
+│   ├── Mux_Fetch.v
+│   ├── PC.v
+│   ├── PC_Adder.v
+│   ├── Pipeline_top.v
+│   ├── pipeline_tb.v
+│   ├── Register_File.v
+│   ├── Sign_Extend.v
+│   ├── Write_Back.v
+│   └── Write_Back_tb.v
 │
 ├── .gitignore
 ├── filelist.f
 └── README.md
 ```
-
----
 
 ## Pipeline Microarchitecture & Datapath Stages
 
@@ -92,9 +80,11 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 * Incorporates a 3-to-1 multiplexer controlled by `PCSrcE` to handle sequential execution (PC + 4), branch target addresses (`PCTargetE`), and jump targets (`ResultE`).
 * Uses `IF/ID` pipeline registers alongside `enableF`, `enableD`, and `clearD` signals for hazard stall/flush control.
 
+
 ### 2. Instruction Decode (ID)
 * Decodes instructions using the Main Control Unit and ALU Decoder based on `opcode`, `funct3`, and `funct7`.
 * Features a 32 x 32-bit register file (rs1, rs2, rd) and an `ImmExt` module supporting I, S, B, and J type immediate expansions.
+
 
 ### 3. Execute (EX)
 * Performs arithmetic and logic operations using the main ALU.
@@ -110,12 +100,11 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ---
 
-## Hazard Detection & Forwarding
+## Hazard Detection & Forwarding (NVIDIA-grade Design Highlights)
 
-* **ALU Forwarding:** The `Hazard_Unit` compares source registers (`RS1E`, `RS2E`) with previous destination registers (`RDM`, `RDW`). If a match occurs, `ForwardAE`/`ForwardBE` switches to `2'b10` (EX/MEM forwarding) or `2 meb01` (MEM/WB forwarding).
+### Data Hazard Resolution (Forwarding & Stalling)
+* **ALU Forwarding:** The `Hazard_Unit` compares source registers (`RS1E`, `RS2E`) with previous destination registers (`RDM`, `RDW`). If a match occurs, `ForwardAE`/`ForwardBE` switches to `2'b10` (EX/MEM forwarding) or `2'b01` (MEM/WB forwarding).
 * **Load-Use Hazards:** Detected when an instruction immediately following a load instruction attempts to read the loaded register (`RS1D/RS2D == RDE` and `MemtoRegE == 1`). The unit pulls `StallF` and `StallD` low and flushes the pipeline stage to introduce a bubble safely.
-
----
 
 ## Control Unit & Instruction Encoding Summary
 
@@ -132,6 +121,12 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 
 ---
 
+## Getting Started & Simulation
+
+### Prerequisites
+- HDL Simulator supporting Verilog/SystemVerilog (e.g., Vivado, QuestaSim, ModelSim, or Verilator).
+- RISC-V GNU Toolchain (optional, for compiling custom assembly/C test vectors).
+
 ## Verification & Simulation Setup
 
 ### Prerequisites
@@ -139,14 +134,14 @@ The processor breaks down instruction execution into 5 distinct pipeline stages:
 * **Toolchain (Optional):** RISC-V GNU Toolchain (for compiling C/Assembly binaries to hex)
 
 ### Verification Methodology
-* **Unit Testing:** Individual pipeline stages (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`) are verified via dedicated testbenches in `sim/`.
-* **Integration Testing:** Full-system pipeline verification is performed using `sim/pipeline_tb.v` with test vectors validating data forwarding, load-use hazard stalls, and branch control flushes.
+* **Unit Testing:** Individual pipeline stages (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`) are verified via dedicated testbenches (`*_tb.v`).
+* **Integration Testing:** Full-system pipeline verification is performed using `pipeline_tb.v` with test vectors validating data forwarding, load-use hazard stalls, and branch control flushes.
 
 ### Running Simulation (CLI Flow via Icarus Verilog)
 
 ```bash
 # Clone the repository
-git clone [https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git](https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git)
+git clone https://github.com/quanghieuzrz/RISCV_Pipeline_Core.git
 cd RISCV_Pipeline_Core
 
 # Compile RTL and Testbench using filelist
